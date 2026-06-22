@@ -90,7 +90,7 @@ python3 speak_selection.py --no-play "hi"            # 只生成、不播放
 | `SPEAK_EL_MODEL` | `eleven_flash_v2_5` | ElevenLabs 模型（flash＝低延遲） |
 | `SPEAK_MM_MODEL` | `speech-2.8-hd` | MiniMax 模型 |
 | `SPEAK_SPEED` | `1.0` | 語速（0.5–2.0） |
-| `SPEAK_CAPTURE_DELAY` | `0.2` | 自動複製前的延遲（秒） |
+| `SPEAK_CAPTURE_DELAY` | `0.6` | 自動複製前的延遲（秒，需長於熱鍵修飾鍵的釋放時間，例如 ⌥S 的 ⌥，否則會變成 ⌘⌥C 而複製不到內容） |
 
 ## 運作原理
 

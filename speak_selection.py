@@ -124,10 +124,15 @@ def get_selection(delay=0.2):
     a terminal), say so and suggest the clipboard path instead.
     """
     old = _run(["pbpaste"]).stdout
+    # Wait FIRST, so the hotkey's own modifiers (e.g. the Option of Option+S) are
+    # released before we synthesize Cmd+C — otherwise macOS sees Cmd+Option+C and
+    # copies nothing. Defer clearing the clipboard to just before the copy so the
+    # brief "empty" window (which a near-simultaneous Speak Clipboard could read) is
+    # as short as possible.
+    subprocess.run(["osascript", "-e", f"delay {delay}"])
     subprocess.run(["pbcopy"], input="", text=True)
     res = _run(
         ["osascript",
-         "-e", f"delay {delay}",
          "-e", 'tell application "System Events" to keystroke "c" using command down'])
     subprocess.run(["osascript", "-e", "delay 0.15"])
     captured = _run(["pbpaste"]).stdout
@@ -282,8 +287,10 @@ def main():
                     choices=["auto", "elevenlabs", "minimax"])
     ap.add_argument("--speed", type=float, default=float(os.environ.get("SPEAK_SPEED", 1.0)))
     ap.add_argument("--capture-delay", type=float,
-                    default=float(os.environ.get("SPEAK_CAPTURE_DELAY", 0.2)),
-                    help="pause before Cmd+C when auto-capturing the selection")
+                    default=float(os.environ.get("SPEAK_CAPTURE_DELAY", 0.6)),
+                    help="pause before Cmd+C when auto-capturing the selection "
+                         "(must outlast the hotkey's own modifier release, e.g. the "
+                         "Option key of Option+S, or the copy becomes Cmd+Option+C)")
     ap.add_argument("--no-play", action="store_true", help="synthesize only")
     args = ap.parse_args()
 

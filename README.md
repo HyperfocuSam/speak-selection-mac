@@ -58,6 +58,15 @@ open .env        # paste your ELEVENLABS_API_KEY and/or MINIMAX_API_KEY
 4. On first use, macOS asks to grant **Raycast** Accessibility permission (needed so it can
    copy your selection). Approve it once in System Settings → Privacy & Security → Accessibility.
 
+> **Most reliable selection capture — use the Quick Action.** The Raycast **Speak Selection**
+> hotkey works by synthesizing ⌘C, which some apps (and some launch contexts) silently ignore —
+> you get "Nothing to read" even with text selected, and Accessibility being granted does **not**
+> fix it. The robust path reads your selection directly through macOS Services: **System Settings
+> → Keyboard → Keyboard Shortcuts → Services → Text**, tick **Speak Selection**, and assign it a
+> key (e.g. ⌥S). No synthetic copy, no Accessibility needed. Keep **Speak Clipboard** on Raycast
+> (⌥C) — it reads the clipboard directly and is rock-solid. You can always fall back to
+> **⌘C → Speak Clipboard**.
+
 ## Usage
 
 **From any normal app (browser, Notes, Mail, etc.):**
@@ -93,7 +102,7 @@ Set these in `.env` (all optional except the keys):
 | `SPEAK_EL_MODEL` | `eleven_flash_v2_5` | ElevenLabs model (flash = low latency) |
 | `SPEAK_MM_MODEL` | `speech-2.8-hd` | MiniMax model |
 | `SPEAK_SPEED` | `1.0` | Speech speed (0.5–2.0) |
-| `SPEAK_CAPTURE_DELAY` | `0.2` | Pause before ⌘C on auto-capture |
+| `SPEAK_CAPTURE_DELAY` | `0.6` | Pause before ⌘C on auto-capture (must outlast your hotkey's own modifier release, e.g. the ⌥ of ⌥S) |
 
 ## How it works
 
@@ -120,6 +129,11 @@ pushing.
 - **"Can't read the selection" / nothing happens in a terminal** — terminals block the
   synthetic ⌘C. Use **Speak Clipboard** (copy first, then trigger), or grant your terminal
   Accessibility permission.
+- **"Nothing to read" even though text is selected** — the synthetic ⌘C didn't land in the
+  app (common when triggered from Raycast; Accessibility being on does not guarantee it).
+  Either raise `SPEAK_CAPTURE_DELAY`, or — most reliable — assign a shortcut to the **Speak
+  Selection** Quick Action (System Settings → Keyboard → Keyboard Shortcuts → Services → Text),
+  which reads the selection directly with no synthetic copy. Or just ⌘C then **Speak Clipboard**.
 - **No sound** — confirm a valid key is in `.env`; test with
   `python3 speak_selection.py "test"`.
 - **ElevenLabs not used** — if its key returned 401 once, it is cached as bad. After fixing
