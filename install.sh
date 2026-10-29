@@ -13,6 +13,17 @@ echo "Repo: $DIR"
 chmod +x "$DIR"/raycast/*.sh
 echo "✓ Raycast scripts are executable"
 
+# 1b. Native voice menu (hover submenus). Needs swiftc (Xcode Command Line Tools);
+#     without it the picker falls back to a plain list dialog.
+if command -v swiftc >/dev/null 2>&1; then
+  swiftc -O "$DIR/voice_menu.swift" -o "$DIR/voice_menu" && echo "✓ Built the voice menu"
+else
+  echo "• swiftc not found — voice picker will use a plain list (xcode-select --install to upgrade)"
+fi
+if ! command -v ffplay >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/ffplay ]; then
+  echo "• Optional: brew install ffmpeg — long passages then start playing in ~1s (streaming)"
+fi
+
 # 2. .env
 if [ ! -f "$DIR/.env" ]; then
   cp "$DIR/.env.example" "$DIR/.env"
@@ -38,7 +49,8 @@ Next steps:
   2. (Optional) Raycast hotkeys:
        Raycast -> Settings -> Extensions -> Script Commands -> Add Script Directory
        Choose:  $DIR/raycast
-       Then assign hotkeys to "Speak Selection", "Speak Clipboard", "Stop Speaking".
+       Then assign hotkeys to "Speak Selection", "Speak Clipboard", "Stop Speaking",
+       and "Speak Selection (Pick Voice)" (e.g. ⌘⌥C) for the voice menu.
   3. Try it now:
        echo "Hello from Speak Selection" | /usr/bin/python3 "$DIR/speak_selection.py"
 

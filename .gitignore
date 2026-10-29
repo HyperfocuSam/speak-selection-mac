@@ -2,7 +2,8 @@
 .env
 *.key
 
-# Generated audio / caches
+# Generated audio / caches / build output
+voice_menu
 *.mp3
 __pycache__/
 *.pyc

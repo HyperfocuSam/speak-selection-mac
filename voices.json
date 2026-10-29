@@ -1,0 +1,131 @@
+{
+  "_comment": "Voice menu for Speak Selection. Edit freely: a top-level entry is either a voice {key, id, label} or a hover group {group, items}. 'id' is an ElevenLabs voice id (Voice Library ids work too). 'default' is used until you pick a voice.",
+  "default": "ada",
+  "menu": [
+    {
+      "key": "ada",
+      "id": "oW8bn5YtBB89X2nJ0DT9",
+      "label": "Main COS - Ada (F)"
+    },
+    {
+      "key": "jessica",
+      "id": "cgSgspJ2msm6clMCkdW9",
+      "label": "The Executive Assistant - Jessica (F, CN/EN)"
+    },
+    {
+      "key": "zara",
+      "id": "jqcCZkN6Knx8BJ5TBdYR",
+      "label": "The Personal Assistant - Zara (F)"
+    },
+    {
+      "group": "Content Readout",
+      "items": [
+        {
+          "key": "sarah",
+          "id": "EXAVITQu4vr4xnSDxMaL",
+          "label": "Article Readout - (F)"
+        },
+        {
+          "key": "lily",
+          "id": "pFZP5JQG7iQjIQuC4Bku",
+          "label": "Content Read-back - (F)"
+        },
+        {
+          "key": "nichalia",
+          "id": "XfNU2rGpBa01ckF309OY",
+          "label": "Learning / Study - (F)"
+        },
+        {
+          "key": "todd",
+          "id": "g14YnDYCsy3k7XLlcKlO",
+          "label": "Learning / Study - (M)"
+        },
+        {
+          "key": "jennie",
+          "id": "z6Kj0hecH20CdetSElRT",
+          "label": "Storytelling - (F)"
+        }
+      ]
+    },
+    {
+      "key": "meera",
+      "id": "9TwzC887zQyDD4yBthzD",
+      "label": "Finance - (F)"
+    },
+    {
+      "group": "Coach",
+      "items": [
+        {
+          "key": "samara",
+          "id": "19STyYD15bswVz51nqLf",
+          "label": "Mental Support - (F)"
+        },
+        {
+          "key": "caroline",
+          "id": "yK2Ny0mq8WplixhD1td3",
+          "label": "ADHD Coach - (F)"
+        },
+        {
+          "key": "jarnathan",
+          "id": "c6SfcYrb2t09NHXiT80T",
+          "label": "Speaking Coach - (M)"
+        },
+        {
+          "key": "mark",
+          "id": "UgBBYS2sOqTuMpoF3BR0",
+          "label": "Money Coach - (M)"
+        }
+      ]
+    },
+    {
+      "group": "Think Tank",
+      "items": [
+        {
+          "key": "quentin",
+          "id": "Aa6nEBJJMKJwJkCx8VU2",
+          "label": "Strategist - (M)"
+        },
+        {
+          "key": "george",
+          "id": "JBFqnCBsd6RMkjVDRZzb",
+          "label": "Negotiator - (M)"
+        }
+      ]
+    },
+    {
+      "group": "Backups",
+      "items": [
+        {
+          "key": "james",
+          "id": "EkK5I93UQWFDigLMpZcX",
+          "label": "Backup - James: husky, bold (M)"
+        },
+        {
+          "key": "amelia",
+          "id": "ZF6FPAbjXT4488VcRRnw",
+          "label": "Backup - Amelia: expressive, crisp British (F)"
+        },
+        {
+          "key": "luna",
+          "id": "BZc8d1MPTdZkyGbE9Sin",
+          "label": "Backup - Luna: natural, measured, confident (F)"
+        },
+        {
+          "key": "chanelle",
+          "id": "t5ztDJA7pj9EyW9QIcJ2",
+          "label": "Backup - Chanelle: wise, warm (F)"
+        },
+        {
+          "key": "eve",
+          "id": "BZgkqPqms7Kj9ulSkVzn",
+          "label": "Backup - Eve: energetic, happy (F)"
+        },
+        {
+          "key": "anna",
+          "id": "9lHjugDhwqoxA5MhX0az",
+          "label": "Backup - Anna: bright, soft, CN/EN (F)"
+        }
+      ]
+    }
+  ]
+}
